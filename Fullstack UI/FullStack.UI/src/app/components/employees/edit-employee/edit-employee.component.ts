@@ -14,7 +14,12 @@ export class EditEmployeeComponent implements OnInit{
 
     this.rout.paramMap.subscribe({
       next: (params) =>{
-        params.get()
+       const id = params.get('id');
+
+       if(id){
+        //call api
+
+       }
       }
     })
 
