@@ -16,7 +16,7 @@ employees: Employee[] = [];
     this.employeesService.getAllEmployees()
     .subscribe({
       next: (employees)=>{
-        console.log(employees)
+        this.employees =employees;
       },
       error: (response) =>{
         console.log(response);
