@@ -18,7 +18,9 @@ namespace Fullstack.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
-           await  _fullStackDbContext.Employees.ToListAsync();
+          var employees = await  _fullStackDbContext.Employees.ToListAsync();
+
+            return Ok(employees);
 
         }
     }
