@@ -3,12 +3,18 @@
 namespace Fullstack.API.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        
-        public IActionResult Index()
+        public EmployeesController() //with ctor bind to constructor
         {
-            return View();
+            
+        }
+
+        [HttpGet]
+        public IActionResult GetAllEmployees()
+        {
+            
         }
     }
 }
