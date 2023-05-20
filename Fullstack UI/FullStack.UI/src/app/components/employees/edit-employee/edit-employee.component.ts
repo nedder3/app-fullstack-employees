@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-employee',
@@ -7,9 +8,16 @@ import { Component,OnInit } from '@angular/core';
 })
 export class EditEmployeeComponent implements OnInit{
 
-  constructor(){}
+  constructor(private rout: ActivatedRoute){}
 
   ngOnInit(): void{
+
+    this.rout.paramMap.subscribe({
+      next: (params) =>{
+        params.get()
+      }
+    })
+
 
   }
 
