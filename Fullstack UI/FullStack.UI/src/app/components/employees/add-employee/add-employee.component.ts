@@ -1,5 +1,6 @@
 import { Component , OnInit} from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
+import { EmployeesService } from 'src/app/services/employees.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -8,7 +9,7 @@ import { Employee } from 'src/app/models/employee.model';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  constructor(){}
+  constructor(private employeeService: EmployeesService) {}
 
   addEmployeeRequest: Employee={
     id:'',
@@ -24,7 +25,12 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   addEmployee(){
-    console.log(this.addEmployeeRequest);
+    this.employeeService.addEmployee(this.addEmployeeRequest)
+    .subscribe({
+      next: (employee) =>{
+        console.log(employee);
+      }
+    })
   }
 
 }
