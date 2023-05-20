@@ -1,3 +1,6 @@
+using Fullstack.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Add the db context and injects it
+
+builder.Services.AddDbContext<FullStackDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FullStackConnectionString")));
 
 var app = builder.Build();
 
