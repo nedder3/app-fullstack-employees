@@ -1,5 +1,6 @@
 ﻿using Fullstack.API.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fullstack.API.Controllers
 {
@@ -15,9 +16,10 @@ namespace Fullstack.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees()
         {
-            
+           await  _fullStackDbContext.Employees.ToListAsync();
+
         }
     }
 }
