@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/models/employee.model';
+import { EmployeesService } from 'src/app/services/employees.service';
 
 @Component({
   selector: 'app-edit-employee',
@@ -8,7 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditEmployeeComponent implements OnInit{
 
-  constructor(private rout: ActivatedRoute){}
+  employeeDetails: Employee ={
+    id:'',
+    name:'',
+    email:'',
+    phone:0,
+    salary:0,
+    department:''
+  }
+
+
+  constructor(private rout: ActivatedRoute, private employeeService : EmployeesService){}
 
   ngOnInit(): void{
 
@@ -18,7 +30,12 @@ export class EditEmployeeComponent implements OnInit{
 
        if(id){
         //call api
-
+        this.employeeService.getEmployee(id)
+        .subscribe({
+          next: (response) =>{
+            this.employeeDetails = response;
+          }
+        })
        }
       }
     })
