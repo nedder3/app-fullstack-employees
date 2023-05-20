@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Fullstack.API.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fullstack.API.Controllers
 {
@@ -6,9 +7,11 @@ namespace Fullstack.API.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        public EmployeesController() //with ctor bind to constructor
+        private readonly FullStackDbContext _fullStackDbContext;
+
+        public EmployeesController(FullStackDbContext fullStackDbContext) //with ctor bind to constructor
         {
-            
+            _fullStackDbContext = fullStackDbContext;
         }
 
         [HttpGet]
